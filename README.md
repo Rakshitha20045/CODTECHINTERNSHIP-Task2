@@ -31,7 +31,7 @@ The primary objective of data preprocessing is to prepare the raw data for analy
 
 ### Goal
 Effective data preprocessing is crucial for building a reliable and accurate machine learning model. By cleaning the data, handling missing values, removing duplicates, scaling features, and understanding the data through EDA, we ensure that the dataset is ready for further modeling and analysis tasks.
-![Screenshot 2024-07-13 210042](https://github.com/user-attachments/assets/c91b1ae3-f1bd-4d98-abf5-fcb17d29a16e)
+![Screenshot 2024-07-13 210203](https://github.com/user-attachments/assets/c1bd9598-20d7-4f27-a1d9-07087c158b17)
 
 
 
