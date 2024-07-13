@@ -1,0 +1,75 @@
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("C:/Users/RAKSHITHA/OneDrive/Documents/diabetes.csv")
+df
+
+df.shape
+
+x=df[['Family_History','Glucose','BloodPressure','SkinThickness','Insulin','BMI','DiabetesPedigreeFunction','Age']]
+x
+
+x=df[['Family_History','Glucose','BloodPressure','SkinThickness','Insulin','BMI','DiabetesPedigreeFunction','Age']].values
+x
+
+y =df[['Outcome']]
+y
+
+y =df[['Outcome']].values
+y
+
+for i in ["SkinThickness","Insulin"]:
+    df[i].fillna(df[i].mode(),inplace=True)
+
+df.isnull().sum()
+
+df.info()
+
+df.describe()
+
+dup=df.duplicated().sum()
+print("Total Duplicated Value:",dup)
+
+for i in df.select_dtypes(include='number').columns:
+    sns.histplot(data=df,x=i)
+    plt.show()
+
+for i in df.select_dtypes(include='number').columns:
+    sns.boxplot(data=df,x=i)
+    plt.show()
+
+for i in ['Family_History','Outcome','BloodPressure','SkinThickness','Insulin','BMI','DiabetesPedigreeFunction','Age']:
+    sns.scatterplot(data=df,x=i,y='Glucose')
+    plt.show()
+
+r=df.select_dtypes(include='number').corr()
+sns.heatmap(r,annot=True)
+
+def wisker(col):
+    q1,q2=np.percentile(col,[25,75])
+    inte_quarterRange=q2-q1
+    lowerWisker=q1-1.5*inte_quarterRange
+    upperwisker=q2=1.5*inte_quarterRange
+    return lowerWisker,upperwisker
+wisker(df['Insulin'])
+wisker(df['BloodPressure'])
+
+df.drop_duplicates()
+
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=20)
+x_train
+
+x_test
+
+y_train
+
+y_test
+
+from sklearn.preprocessing import StandardScaler
+sc_x=StandardScaler()
+x_train=sc_x.fit_transform(x_train)
+x_test=sc_x.transform(x_test)
+x_train
